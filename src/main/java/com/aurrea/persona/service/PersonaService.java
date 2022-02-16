@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.aurrea.persona.model.Empresa;
 import com.aurrea.persona.model.Persona;
+import com.aurrea.persona.repository.EmpresaRepo;
 import com.aurrea.persona.repository.PersonaRepository;
 
 @Service
@@ -15,9 +17,11 @@ public class PersonaService {
 	
 	@Autowired
 	private PersonaRepository personaRepo;
-	
+	private EmpresaRepo empresaRepo;
 	public Persona agregarPersona(Persona persona) {
-	
+		Empresa empresa = new Empresa();
+		empresa.setEmpresa(persona.getPersona_empresa());
+		empresa.setEmpresadireccion(persona.getPersona_empresadireccion());
 		return personaRepo.save(persona);
 	}
 	
